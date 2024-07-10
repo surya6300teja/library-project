@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>E-library</title>
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <div class="content">
+        <div class="title">
+            <h1>E-Library</h1>
+            <h2>Welcome to digital library</h2>
+            
+        </div>
+        <div class="summary">
+            <p>
+                A comprehensive online resource that provides easy access to a vast collection of digital content. Our library is designed to cater to a diverse range of interests and preferences, offering a rich assortment of e-books, audiobooks, articles, and more.
+            </p>
+        </div>
+        <form class="item" action="/find" method="post">
+            <input type="text" name="find" placeholder="Enter book name or ISBN " autocomplete="off" autofocus="true" />
+            <button class="find" type="submit" name="list" >Find</button>
+        </form>
+
+        
+        <form action="/new" method="get">
+            <input type="submit" action="/new" method="get"  value="Add Book" id="tab">
+          </form>
+        
+        
+
+        <hr>
+
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Sort by
+                <img src="./assets/icons8-sort-by-50.png" alt="" >
+                
+            </button>
+            
+            <div id="myDropdown" class="dropdown-content">
+              <a href="/rating">Rating</a>
+              <a href="/date">Date added</a>
+            </div>
+        </div>
+
+        <% for(let item of listItems){%>
+        <div class="item">
+            
+                <img src="https://covers.openlibrary.org/b/isbn/0<%= item.isbn%>-M.jpg" alt="">
+                <div class="title">
+                    <h2><%= item.title %> </h2>
+                    <h3>-By <%= item.author %></h3>
+                    <h3><%= item.isbn %></h3>
+                </div>
+                <div class="date">
+                    <p><%= item.dates %></p>
+                </div>
+                <div class="summary">
+                    <p><%= item.summary %></p>
+                </div>
+                <div class="links">
+                    <a href="./info?id=<%= item.id %>">Read more...</a>
+                 </div>
+            
+        </div>
+        <% } %>
+    </div>
+
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+          document.getElementById("myDropdown").classList.toggle("show");
+        }
+        
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+          if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+              }
+            }
+          }
+        }
+        </script>
+</body>
+</html>

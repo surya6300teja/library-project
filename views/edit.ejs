@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>E-library</title>
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <div class="content">
+        
+        <div class="title">
+            <h1>E-Library</h1>
+        </div>
+        <hr>
+       
+        <% for(let item of listItems){%>
+         <% console.log(item.title) %>
+        <form class="item" action="/edit" method="post">
+            
+            <p>
+                <label for="Title">Title:</label><br>
+                <textarea id="title" name="title" rows="1" cols="100" required><%= item.title %></textarea>
+            </p>
+            <p>
+                <label for="author">Author:</label><br>
+                <textarea id="author" name="author" rows="1" cols="100" required><%= item.author %></textarea>
+            </p>
+            <p>
+                <label for="isbn">ISBN:</label><br>
+                <textarea id="isbn" name="isbn" rows="1" cols="100" required><%= item.isbn %></textarea>
+            </p>
+            <p>
+                <label for="summary">Summary:</label><br>
+            <textarea id="summary" name="summary" rows="10" cols="100" required><%= item.summary %></textarea>
+            </p>
+            <p>
+                <label for="contents">Contents:</label><br>
+            <textarea id="contents" name="contents" rows="20" cols="100" required><%= item.contents %></textarea>
+            </p>
+            <p>
+                <label for="rating">Rating:</label><br>
+                <textarea id="rating" name="recommendation" rows="1" cols="100" required><%= item.recommendation %></textarea>
+            </p>
+            <button class="add" type="submit" name="id" value="<%= item.id %>"  >Submit</button>
+          </form>
+
+          <% } %>
+    </div>
+</body>
+</html>
